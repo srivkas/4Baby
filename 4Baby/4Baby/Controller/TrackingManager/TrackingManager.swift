@@ -10,28 +10,35 @@
 
 //let trigger4 = "childFarFromMeCarSeatNearMeTrigger"
 
-
-enum TrackingMode {
-    case idle
-    case started
-    case success
-    case failed
+enum State : String{
+    case idle = "idle"
+    case started = "started"
+    case success = "success"
+    case failed = "failed"
 }
+
+protocol  TrackingManagerDelegate
+{
+    func trackingManagerStateDidChanged(oldState:State,newState:State) -> Void
+}
+
+
 
 class TrackingManager : NSObject ,ESTTriggerManagerDelegate {
     
+    var delegate : TrackingManagerDelegate? = nil
     
-    let ChildNearableID : String = "54b128ebbc420d35"//"ChildNearableID"
-    let CarSeatNearableID : String = "54b128ebbc420d36"//"CarSeatNearableID"
+    let ChildNearableID : String = "8eb948fd938b3984"//"ChildNearableID"
+    let CarSeatNearableID : String = "e0d79996bc3c63b0"//"CarSeatNearableID"
     
     
-    let startTriggerID : String = "childInCarSeatNearMeTrigger"
-    let successEndTriggerID : String = "childInCarSeatFarFromMeTrigger"
-    let failedEndTriggerID : String = "childNearMeCarSeatFarFromMeTrigger"
+    let startTriggerID : String = "childAndCarSeatNearMeTrigger"
+    let failedEndTriggerID : String = "childAndCarSeatFarFromMeTrigger"
+    let successEndTriggerID : String = "childNearMeCarSeatFarFromMeTrigger"
     
     static let sharedInstance : TrackingManager = TrackingManager()
     let triggerManager = ESTTriggerManager()
-    var trackingMode : TrackingMode = .idle
+    var trackingMode : State = .idle
     
     
     override init() {
@@ -45,6 +52,7 @@ class TrackingManager : NSObject ,ESTTriggerManagerDelegate {
         
         //setting the delegate
         self.triggerManager.delegate = self
+       
         
         let childInRule = ESTProximityRule.inRangeOfNearableIdentifier(ChildNearableID)
         let carSeatInRule = ESTProximityRule.inRangeOfNearableIdentifier(CarSeatNearableID)
@@ -60,7 +68,7 @@ class TrackingManager : NSObject ,ESTTriggerManagerDelegate {
         self.triggerManager.startMonitoringForTrigger(failedEndTrigger)
         
         
-        let successEndTrigger = ESTTrigger(rules: [childInRule,carSeatOutRule], identifier: failedEndTriggerID)
+        let successEndTrigger = ESTTrigger(rules: [childInRule,carSeatOutRule], identifier: successEndTriggerID)
         self.triggerManager.startMonitoringForTrigger(successEndTrigger)
 
         
@@ -81,6 +89,8 @@ class TrackingManager : NSObject ,ESTTriggerManagerDelegate {
     
     func triggerManager(manager: ESTTriggerManager, triggerChangedState trigger: ESTTrigger) {
         
+        let oldState : State = self.trackingMode
+        
         if (trigger.identifier == startTriggerID && trigger.state == true)
         {
             self.trackingMode = .started
@@ -96,6 +106,10 @@ class TrackingManager : NSObject ,ESTTriggerManagerDelegate {
             self.trackingMode = .failed
         }
         
+        if oldState != self.trackingMode {
+            
+            self.delegate?.trackingManagerStateDidChanged(oldState, newState: self.trackingMode)
+        }
         
         
         

@@ -8,13 +8,15 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, TrackingManagerDelegate {
 
+    @IBOutlet weak var statusLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
         TrackingManager.sharedInstance.startTracking()
+        TrackingManager.sharedInstance.delegate = self
     }
     
     
@@ -28,8 +30,18 @@ class ViewController: UIViewController {
     
     deinit
     {
+        
         TrackingManager.sharedInstance.stopTracking()
+        
     }
+    
+    
+    func trackingManagerStateDidChanged(oldState:State,newState:State) -> Void
+    {
+       self.statusLabel.text = String(format:"%@->%@",oldState.rawValue,newState.rawValue)
+  
+    }
+
 
 
 }
