@@ -1,5 +1,5 @@
 //
-//  TrackingManager.swift
+//  TrackingManagerType1.swift
 //  4Baby
 //
 //  Created by Admin on 08/08/2016.
@@ -17,16 +17,16 @@ enum State : String{
     case failed = "failed"
 }
 
-protocol  TrackingManagerDelegate
+protocol  TrackingManagerType1Delegate
 {
-    func trackingManagerStateDidChanged(oldState:State,newState:State) -> Void
+    func TrackingManagerType1StateDidChanged(oldState:State,newState:State) -> Void
 }
 
 
 
-class TrackingManager : NSObject ,ESTTriggerManagerDelegate {
+class TrackingManagerType1 : NSObject ,ESTTriggerManagerDelegate {
     
-    var delegate : TrackingManagerDelegate? = nil
+    var delegate : TrackingManagerType1Delegate? = nil
     
     let ChildNearableID : String = "8eb948fd938b3984"//"ChildNearableID"
     let CarSeatNearableID : String = "e0d79996bc3c63b0"//"CarSeatNearableID"
@@ -36,7 +36,7 @@ class TrackingManager : NSObject ,ESTTriggerManagerDelegate {
     let failedEndTriggerID : String = "childAndCarSeatFarFromMeTrigger"
     let successEndTriggerID : String = "childNearMeCarSeatFarFromMeTrigger"
     
-    static let sharedInstance : TrackingManager = TrackingManager()
+    static let sharedInstance : TrackingManagerType1 = TrackingManagerType1()
     let triggerManager = ESTTriggerManager()
     var trackingMode : State = .idle
     
@@ -108,7 +108,7 @@ class TrackingManager : NSObject ,ESTTriggerManagerDelegate {
         
         if oldState != self.trackingMode {
             
-            self.delegate?.trackingManagerStateDidChanged(oldState, newState: self.trackingMode)
+            self.delegate?.TrackingManagerType1StateDidChanged(oldState, newState: self.trackingMode)
         }
         
         

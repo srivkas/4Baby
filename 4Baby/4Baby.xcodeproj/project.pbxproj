@@ -12,7 +12,7 @@
 		84E8DD771D58D787009A791D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E8DD761D58D787009A791D /* ViewController.swift */; };
 		84E8DD7D1D58D7B8009A791D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84E8DD791D58D7B8009A791D /* LaunchScreen.storyboard */; };
 		84E8DD7E1D58D7B8009A791D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84E8DD7B1D58D7B8009A791D /* Main.storyboard */; };
-		84E8DD801D58D800009A791D /* TrackingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E8DD7F1D58D800009A791D /* TrackingManager.swift */; };
+		84E8DD801D58D800009A791D /* TrackingManagerType1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E8DD7F1D58D800009A791D /* TrackingManagerType1.swift */; };
 		FD5B08EA4BADF3ED35EA3A6F /* Pods_4Baby.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8483A45FC04FAAA9076FDD7 /* Pods_4Baby.framework */; };
 /* End PBXBuildFile section */
 
@@ -27,7 +27,7 @@
 		84E8DD761D58D787009A791D /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		84E8DD7A1D58D7B8009A791D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		84E8DD7C1D58D7B8009A791D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		84E8DD7F1D58D800009A791D /* TrackingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackingManager.swift; sourceTree = "<group>"; };
+		84E8DD7F1D58D800009A791D /* TrackingManagerType1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackingManagerType1.swift; sourceTree = "<group>"; };
 		C8483A45FC04FAAA9076FDD7 /* Pods_4Baby.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_4Baby.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -102,7 +102,7 @@
 		84E8DD741D58D746009A791D /* TrackingManager */ = {
 			isa = PBXGroup;
 			children = (
-				84E8DD7F1D58D800009A791D /* TrackingManager.swift */,
+				84E8DD7F1D58D800009A791D /* TrackingManagerType1.swift */,
 			);
 			path = TrackingManager;
 			sourceTree = "<group>";
@@ -268,7 +268,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				84E8DD801D58D800009A791D /* TrackingManager.swift in Sources */,
+				84E8DD801D58D800009A791D /* TrackingManagerType1.swift in Sources */,
 				84E8DD771D58D787009A791D /* ViewController.swift in Sources */,
 				84E8DD5F1D58D1BC009A791D /* AppDelegate.swift in Sources */,
 			);
